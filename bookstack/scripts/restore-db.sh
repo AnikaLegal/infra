@@ -23,9 +23,15 @@ ssh ubuntu@$HOST /bin/bash << EOF
     rm -f \$RESTORE_SCRIPT
     gunzip $BACKUP_FILE
 
-    echo -e "\nDeleting Bookstack database..."
-    echo "DROP DATABASE bookstack;" | sudo mysql
-    echo "SHOW DATABASES;" | sudo mysql
+    DATABASE_EXISTS=\$(sudo mysqlshow | grep bookstack)
+    if [[ -z "\$DATABASE_EXISTS" ]]
+    then
+        echo -e "\nBookstack database doesn't exist yet."
+    else
+        echo -e "\nDeleting Bookstack database..."
+        echo "DROP DATABASE bookstack;" | sudo mysql
+        echo "SHOW DATABASES;" | sudo mysql
+    fi
 
     echo -e "\nRe-creating Bookstack database..."
     sudo mysqladmin create bookstack
