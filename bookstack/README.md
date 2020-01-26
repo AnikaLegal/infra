@@ -12,6 +12,8 @@ There is a MySQL database backing the app and a Apache2 webserver hosting it. Fi
 
 Error logs are written to `/var/www/bookstack/storage/logs/laravel.log`
 
+Database backups are handled in the `backups` folder at the root of this repo.
+
 ## Config
 
 Config is stored at `/var/www/bookstack/.env`. You need to ensure the following config is set manually:
@@ -44,28 +46,6 @@ GOOGLE_APP_SECRET=**********
 
 ```
 
-## Scripts
+## Setup
 
-Setup wiki: do not run end-to-end. Just copy-paste fragments into a terminal.
-
-```
-./scripts/setup.sh
-```
-
-Backup database to S3 bucket:
-
-```
-./scripts/backup-db.sh
-```
-
-Restore database from latest backup in the S3 bucket:
-
-```
-./scripts/restore-db.sh
-```
-
-## Database backups
-
-Currently, backups can be taken manually.
-
-TODO: Add scheduled backups to S3.
+The setup script `setup.sh` contains ~all the commands needed to set up the webserver. Do not run it end-to-end. Just copy-paste fragments into a terminal.

@@ -2,6 +2,8 @@
 
 This folder contains Ansible scripts which configure the Clerk web server.
 
+Database backups for Clerk are handled in the `backups` folder at the root of this repo.
+
 A single AWS EC2 server runs:
 
 - NGINX server
@@ -15,6 +17,7 @@ virtualenv -p python3 ~/.venv
 . ~/.venv/bin/activate
 pip3 install -r requirements.txt
 ```
+
 ### Docker Swarm
 
 Docker swarm hosts the application containers as 'stacks', generated from a docker-compose file. Web containers expose a static port for NGINX.
@@ -42,7 +45,6 @@ To acces psql
 
     su - postgres
     psql
-
 
 ## Ansible
 
