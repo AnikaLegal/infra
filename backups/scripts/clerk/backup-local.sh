@@ -1,5 +1,6 @@
 #!/bin/bash
 # Take database backups for the clerk database
+# Run this from your local machine.
 # To access psql on the server:
 # 
 #   su - postgres

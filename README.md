@@ -5,6 +5,7 @@ Scripts and config for Anika's infra.
 # Project Structure
 
 ```
+├── backups                     Scripts for database backups
 ├── bookstack                   Bookstack wiki infra
 └── clerk                       Clerk Django webapp infra
     ├── configure               Ansible configuration for Clerk webserver

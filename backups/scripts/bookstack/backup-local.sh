@@ -1,4 +1,5 @@
 #!/bin/bash
+# Run this from your local machine.
 # Take database backups for the BookStack MySQL database
 set -e
 HOST=3.24.123.148
@@ -8,8 +9,6 @@ BACKUP_FILE="mysql_bookstack_${TIME}.sql.gz"
 BACKUP_S3="$S3_BUCKET/$BACKUP_FILE"
 ssh ubuntu@$HOST /bin/bash << EOF
     set -e
-    export PGHOST=localhost
-    export PGDATABASE=$DATABASE_NAME
     echo "Creating local database dump $BACKUP_FILE"
     sudo mysqldump --all-databases | gzip > $BACKUP_FILE
 EOF

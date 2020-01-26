@@ -1,5 +1,6 @@
 #!/bin/bash
 # Restore latest database backup to the BookStack MySQL database
+# Run this from your local machine.
 set -e
 HOST=3.24.123.148
 S3_BUCKET=s3://anika-database-backups
