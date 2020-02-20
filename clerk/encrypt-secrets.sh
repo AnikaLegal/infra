@@ -7,5 +7,5 @@
 # Run this from ./scripts/configure
 #
 set -e
-cp ./scripts/configure/ansible/secrets.secret.yml ./scripts/configure/ansible/secrets.yml
-ansible-vault encrypt ./scripts/configure/ansible/secrets.yml --vault-password-file ~/.vault-pass.txt
+cp ./ansible/secrets.secret.yml ./ansible/secrets.yml
+ansible-vault encrypt ./ansible/secrets.yml --vault-password-file ~/.vault-pass.txt
