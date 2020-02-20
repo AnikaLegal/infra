@@ -41,3 +41,7 @@
       value: "{{ PAPERTRAIL_PORT }}"
     - key: PAPERTRAIL_URL
       value: "{{ PAPERTRAIL_URL }}"
+    - key: PUBLIC_SUBMIT_SLACK_WEBHOOK_URL
+      value: "{{ PUBLIC_SUBMIT_SLACK_WEBHOOK_URL }}"
+    - key: PRIVATE_SUBMIT_SLACK_WEBHOOK_URL
+      value: "{{ PRIVATE_SUBMIT_SLACK_WEBHOOK_URL }}"

@@ -6,5 +6,5 @@
 #
 ansible-playbook \
     --vault-password-file ~/.vault-pass.txt \
-    --inventory ./scripts/configure/ansible/hosts \
-    ./scripts/configure/ansible/site.yml
+    --inventory ./ansible/hosts \
+    ./ansible/site.yml
