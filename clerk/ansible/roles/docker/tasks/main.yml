@@ -3,7 +3,7 @@
 - include_vars: secrets.yml
 
 - name: Install Docker dependencies
-  apt: name={{item}} state=installed
+  apt: name={{item}} state=present
   with_items:
     - software-properties-common
     - apt-transport-https

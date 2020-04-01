@@ -1,5 +1,16 @@
 ### Virtual Host Config
 
+## HTTP Redirects
+{% for redirect in domain_redirects %}
+# {{ redirect.name }}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{ redirect.inbound_domain }};
+    return 301 {{ redirect.target_url }};
+}
+{% endfor %}
+
 ## Reverse proxy all HTTP requests to application server
 {% for endpoint in http_endpoints %}
 # {{ endpoint.name }}
