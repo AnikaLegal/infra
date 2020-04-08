@@ -5,7 +5,7 @@ http_endpoints:
     server_name: clerk.anikalegal.com
     port: 8000
   - name: clerk test
-    server_name: test.clerk.anikalegal.com
+    server_name: test-clerk.anikalegal.com
     port: 8001
 
 domain_redirects:
