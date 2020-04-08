@@ -43,3 +43,9 @@
       value: "{{ MATTSEGAL_SUBMIT_SLACK_WEBHOOK_URL }}"
     - key: ALERTS_SUBMIT_SLACK_WEBHOOK_URL
       value: "{{ ALERTS_SUBMIT_SLACK_WEBHOOK_URL }}"
+    # Backwards compatibility thing - delete in next day or two 9/4/20
+    - key: PRIVATE_SUBMIT_SLACK_WEBHOOK_URL
+      value: "{{ MATTSEGAL_SUBMIT_SLACK_WEBHOOK_URL }}"
+    - key: PUBLIC_SUBMIT_SLACK_WEBHOOK_URL
+      value: "{{ ALERTS_SUBMIT_SLACK_WEBHOOK_URL }}"
+    # End backwards compatibility thing
