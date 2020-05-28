@@ -30,6 +30,7 @@ server {
     # see https://wellfire.co/learn/nginx-django-x-accel-redirects/
     location /streamlit/ {
         internal;
+        rewrite /streamlit/(.*) /$1  break;
         proxy_pass http://127.0.0.1:{{ endpoint.streamlit_port }};
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Host $host;
