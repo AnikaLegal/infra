@@ -37,15 +37,11 @@
       value: "{{ AWS_SECRET_ACCESS_KEY }}"
     - key: RAVEN_DSN
       value: "{{ RAVEN_DSN }}"
-    - key: GENERAL_SUBMIT_SLACK_WEBHOOK_URL
-      value: "{{ GENERAL_SUBMIT_SLACK_WEBHOOK_URL }}"
-    - key: MATTSEGAL_SUBMIT_SLACK_WEBHOOK_URL
-      value: "{{ MATTSEGAL_SUBMIT_SLACK_WEBHOOK_URL }}"
-    - key: ALERTS_SUBMIT_SLACK_WEBHOOK_URL
-      value: "{{ ALERTS_SUBMIT_SLACK_WEBHOOK_URL }}"
-    # Backwards compatibility thing - delete in next day or two 9/4/20
-    - key: PRIVATE_SUBMIT_SLACK_WEBHOOK_URL
-      value: "{{ MATTSEGAL_SUBMIT_SLACK_WEBHOOK_URL }}"
-    - key: PUBLIC_SUBMIT_SLACK_WEBHOOK_URL
-      value: "{{ ALERTS_SUBMIT_SLACK_WEBHOOK_URL }}"
-    # End backwards compatibility thing
+    - key: ACTIONSTEP_TEST_CLIENT_ID
+      value: "{{ ACTIONSTEP_TEST_CLIENT_ID }}"
+    - key: ACTIONSTEP_TEST_CLIENT_SECRET
+      value: "{{ ACTIONSTEP_TEST_CLIENT_SECRET }}"
+    - key: ACTIONSTEP_PROD_CLIENT_ID
+      value: "{{ ACTIONSTEP_PROD_CLIENT_ID }}"
+    - key: ACTIONSTEP_PROD_CLIENT_SECRET
+      value: "{{ ACTIONSTEP_PROD_CLIENT_SECRET }}"
