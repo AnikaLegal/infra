@@ -29,7 +29,7 @@ server {
     # Internal streamlit endpoint
     # see https://wellfire.co/learn/nginx-django-x-accel-redirects/
     location /streamlit {
-        # internal;
+        internal;
 
         # Path rewrite
         rewrite /streamlit/(.*) /$1  break;
