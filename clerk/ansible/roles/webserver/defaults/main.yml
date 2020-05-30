@@ -1,14 +1,16 @@
 ---
 # Webserver default variables
 http_endpoints:
-  - name: clerk prod
-    server_name: clerk.anikalegal.com
-    streamlit_port: 8500
-    port: 8000
   - name: clerk test
     server_name: test-clerk.anikalegal.com
-    streamlit_port: 8501
     port: 8001
+    streamlit_port: 8501
+    streamlit_path: streamlit-test
+  - name: clerk prod
+    server_name: clerk.anikalegal.com
+    port: 8000
+    streamlit_port: 8500
+    streamlit_path: streamlit-prod
 
 domain_redirects:
   - name: old repairs prod

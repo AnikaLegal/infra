@@ -13,7 +13,7 @@ server {
 
 ## Reverse proxy all HTTP requests to application server
 {% for endpoint in http_endpoints %}
-# {{ endpoint.name }}
+# Start {{ endpoint.name }}
 server {
     listen 80;
     listen [::]:80;
@@ -26,15 +26,25 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_redirect http://127.0.0.1:{{ endpoint.port }} http://{{ endpoint.server_name }};
     }
-    # Internal streamlit endpoint
-    # see https://wellfire.co/learn/nginx-django-x-accel-redirects/
-    location /streamlit {
+}
+# End {{ endpoint.name }}
+{% endfor %}
+
+# Internal streamlit servers
+# see https://wellfire.co/learn/nginx-django-x-accel-redirects/
+# and https://www.nginx.com/blog/websocket-nginx/
+server {
+    listen 80;
+    listen [::]:80;
+    server_name 3.106.55.74; # Hardcoded IPs wooo
+    {% for endpoint in http_endpoints %}
+
+    # Streamlit internal proxy endpoint for {{ endpoint.name }}
+    location /{{ endpoint.streamlit_path }}/ {
         internal;
-
         # Path rewrite
-        rewrite /streamlit/(.*) /$1  break;
-        proxy_redirect http://127.0.0.1:{{ endpoint.port }} http://{{ endpoint.server_name }}/streamlit/;
-
+        rewrite /{{ endpoint.streamlit_path }}/(.*) /$1  break;
+        proxy_redirect http://127.0.0.1:{{ endpoint.streamlit_port }} http://3.106.55.74/{{ endpoint.streamlit_path }}/;
         proxy_pass http://127.0.0.1:{{ endpoint.streamlit_port }};
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Host $host;
@@ -42,15 +52,13 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
 
         # Websockets
-        # see https://www.nginx.com/blog/websocket-nginx/
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
-        
     }
 
+    {% endfor %}
 }
-{% endfor %}
 
 # 404 random requests
 server {
