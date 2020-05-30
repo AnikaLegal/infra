@@ -4,13 +4,13 @@ http_endpoints:
   - name: clerk test
     server_name: test-clerk.anikalegal.com
     port: 8001
+    streamlit_name: test-reports.anikalegal.com
     streamlit_port: 8501
-    streamlit_path: streamlit-test
   - name: clerk prod
     server_name: clerk.anikalegal.com
     port: 8000
+    streamlit_name: reports.anikalegal.com
     streamlit_port: 8500
-    streamlit_path: streamlit-prod
 
 domain_redirects:
   - name: old repairs prod
