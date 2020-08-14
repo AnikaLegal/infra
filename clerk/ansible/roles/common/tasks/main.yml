@@ -45,3 +45,7 @@
       value: "{{ ACTIONSTEP_PROD_CLIENT_ID }}"
     - key: ACTIONSTEP_PROD_CLIENT_SECRET
       value: "{{ ACTIONSTEP_PROD_CLIENT_SECRET }}"
+    - key: MAILCHIMP_TEST_API_KEY
+      value: "{{ MAILCHIMP_TEST_API_KEY }}"
+    - key: MAILCHIMP_PROD_API_KEY
+      value: "{{ MAILCHIMP_PROD_API_KEY }}"
