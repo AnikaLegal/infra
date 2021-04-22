@@ -49,3 +49,7 @@
       value: "{{ MAILCHIMP_TEST_API_KEY }}"
     - key: MAILCHIMP_PROD_API_KEY
       value: "{{ MAILCHIMP_PROD_API_KEY }}"
+    - key: GOOGLE_OAUTH2_KEY
+      value: "{{ GOOGLE_OAUTH2_KEY }}"
+    - key: GOOGLE_OAUTH2_SECRET
+      value: "{{ GOOGLE_OAUTH2_SECRET }}"
