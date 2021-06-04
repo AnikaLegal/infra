@@ -1,7 +1,18 @@
 ### Virtual Host Config
 
-## HTTP Redirects
-{% for redirect in domain_redirects %}
+## Domain to domain redirects
+{% for redirect in domain_to_domain_redirects %}
+# {{ redirect.name }}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{ redirect.inbound_domain }};
+    return 301 $scheme://{{ redirect.target_domain }}$request_uri;
+}
+{% endfor %}
+
+## Domain to URL redirects
+{% for redirect in domain_to_url_redirects %}
 # {{ redirect.name }}
 server {
     listen 80;
@@ -10,6 +21,7 @@ server {
     return 301 {{ redirect.target_url }};
 }
 {% endfor %}
+
 
 ## Reverse proxy all HTTP requests to application server
 {% for endpoint in http_endpoints %}
@@ -25,40 +37,6 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_redirect http://127.0.0.1:{{ endpoint.port }} http://{{ endpoint.server_name }};
-    }
-}
-# Internal Streamlit server for {{ endpoint.name }}
-# ... this is way more complicated than it should be.
-# see https://wellfire.co/learn/nginx-django-x-accel-redirects/
-# and https://www.nginx.com/blog/websocket-nginx/
-server {
-    listen 80;
-    listen [::]:80;
-    server_name {{ endpoint.streamlit_name }};
-    # Allow access to Django on limited URLs
-    location ~ ^(/admin/login/|/reports/.*|/static/.*)$ {
-        proxy_pass http://127.0.0.1:{{ endpoint.port }};
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_redirect http://127.0.0.1:{{ endpoint.port }} http://{{ endpoint.server_name }};
-    }
-    # Access to Streamlit, but internal only.
-    location /streamlit/ {
-        internal;
-        rewrite /streamlit/(.*) /$1  break;
-        # HTTP reverse proxy
-        proxy_redirect http://127.0.0.1:{{ endpoint.streamlit_port }} http://{{ endpoint.server_name }}/streamlit/;
-        proxy_pass http://127.0.0.1:{{ endpoint.streamlit_port }};
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        # Websockets reverse proxy
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
     }
 }
 # End {{ endpoint.name }}

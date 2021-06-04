@@ -4,24 +4,28 @@ http_endpoints:
   - name: clerk test
     server_name: test-clerk.anikalegal.com
     port: 8001
-    streamlit_name: test-reports.anikalegal.com
-    streamlit_port: 8501
   - name: clerk prod
     server_name: clerk.anikalegal.com
     port: 8000
-    streamlit_name: reports.anikalegal.com
-    streamlit_port: 8500
+  - name: website prod
+    server_name: www.anikalegal.com
+    port: 8000
 
-domain_redirects:
+domain_to_domain_redirects:
+  - name: website force www
+    inbound_domain: anikalegal.com
+    target_domain: www.anikalegal.com
+
+domain_to_url_redirects:
   - name: old repairs prod
     inbound_domain: repairs.anikalegal.com
-    target_url: https://intake.anikalegal.com/repairs/
+    target_url: https://intake.anikalegal.com/
   - name: old repairs test
     inbound_domain: test-repairs.anikalegal.com
-    target_url: https://test-intake.anikalegal.com/repairs/
+    target_url: https://test-intake.anikalegal.com/
   - name: old covid prod
     inbound_domain: covid.anikalegal.com
-    target_url: https://intake.anikalegal.com/covid/
+    target_url: https://intake.anikalegal.com/
   - name: old covid test
     inbound_domain: test-covid.anikalegal.com
-    target_url: https://test-intake.anikalegal.com/covid/
+    target_url: https://test-intake.anikalegal.com/
