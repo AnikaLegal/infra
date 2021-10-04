@@ -3,6 +3,6 @@
   remote_user: root
   roles:
     - common
-    - webserver
-    - database
-    - docker
+    # - webserver
+    # - database
+    # - docker
